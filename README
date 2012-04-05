@@ -13,7 +13,7 @@ run.cmd: The Condor command to run our code
 query.cmd: Temporary test command file for testing Lucene
 query.sh: Temporary test bash file for testing Lucene
 
-D1
+D1 (tagged)
 Jim White: debugged Lucene;
 Thibaut Labarre: set up Git repo; created this README
 
