@@ -1,0 +1,20 @@
+Team EITI
+Thibaut LABARRE (tlabarre@uw.edu)
+Jim WHITE (jimwhite@uw.edu)
+
+Guide to the contents of each dir
+src/: All of our Java code
+src/placeholder: temporary placeholder file for git to acknowledge the folder
+
+lib/: 3rd party packages not available on Patas
+lib/placeholder: temporary placeholder file for git to acknowledge the folder
+
+run.cmd: The Condor command to run our code
+query.cmd: Temporary test command file for testing Lucene
+query.sh: Temporary test bash file for testing Lucene
+
+D1
+Jim White: debugged Lucene;
+Thibaut Labarre: set up Git repo; created this README
+
+D2
