@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="lucene-core-3.5.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Projects/Apache/Lucene/lucene-3.5.0/lucene-core-3.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/Projects/Apache/Lucene/lucene-3.5.0/lucene-core-3.5.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="file://$USER_HOME$/Projects/Apache/Lucene/lucene-3.5.0/src/java" />
+      <root url="file://$USER_HOME$/Projects/Apache/Lucene/lucene-3.5.0/src/tools/java" />
+    </SOURCES>
+  </library>
+</component>
