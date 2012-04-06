@@ -67,19 +67,19 @@ kb_dir.eachFile  { file ->
                 lineCount.intValue = lines.size()
                 doc.add(lineCount)
 
-                def idField = new Field("entity_id", entity_id, Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS)
+                def idField = new Field("entity_id", entity_id, Field.Store.YES, Field.Index.NOT_ANALYZED)
                 idField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY)
                 doc.add(idField)
 
-                def typeField = new Field("entity_type", entity_type, Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS)
+                def typeField = new Field("entity_type", entity_type, Field.Store.YES, Field.Index.NOT_ANALYZED)
                 typeField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY)
                 doc.add(typeField)
 
-                def titleField = new Field("entity_title", entity_title, Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS)
+                def titleField = new Field("entity_title", entity_title, Field.Store.YES, Field.Index.NOT_ANALYZED)
                 titleField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY)
                 doc.add(titleField)
 
-                def classField = new Field("entity_class", facts_class, Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS)
+                def classField = new Field("entity_class", facts_class, Field.Store.YES, Field.Index.NOT_ANALYZED)
                 classField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY)
                 doc.add(classField)
 
@@ -90,6 +90,12 @@ kb_dir.eachFile  { file ->
                 def textField = new Field("contents", wiki_text, Field.Store.NO, Field.Index.ANALYZED)
                 textField.setIndexOptions(FieldInfo.IndexOptions.DOCS_AND_FREQS_AND_POSITIONS)
                 doc.add(textField)
+
+                entity.'**'.grep { (it.name() == 'link') && it.@entity_id.toString() }.each {
+                    def refField = new Field("entity_ref", it.@entity_id.toString(), Field.Store.YES, Field.Index.NOT_ANALYZED)
+                    refField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY)
+                    doc.add(refField)
+                }
 
                 writer.addDocument(doc);
                 ++entity_count
