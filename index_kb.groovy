@@ -59,8 +59,13 @@ kb_dir.eachFile  { file ->
                 pathField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY);
                 doc.add(pathField);
 
-                def lineField = new NumericField("line", Field.Store.YES, true)
+                def lineField = new NumericField("line_number", Field.Store.YES, true)
                 lineField.intValue = lineNumber
+                doc.add(lineField)
+
+                def lineCount = new NumericField("line_count", Field.Store.YES, false)
+                lineCount.intValue = lines.size()
+                doc.add(lineCount)
 
                 def idField = new Field("entity_id", entity_id, Field.Store.YES, Field.Index.NOT_ANALYZED_NO_NORMS)
                 idField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY)
@@ -79,7 +84,7 @@ kb_dir.eachFile  { file ->
                 doc.add(classField)
 
                 def nameField = new Field("entity_name", entity_name, Field.Store.YES, Field.Index.ANALYZED)
-                nameField.setIndexOptions(FieldInfo.IndexOptions.DOCS_ONLY)
+                nameField.setIndexOptions(FieldInfo.IndexOptions.DOCS_AND_FREQS_AND_POSITIONS)
                 doc.add(nameField)
 
                 def textField = new Field("contents", wiki_text, Field.Store.NO, Field.Index.ANALYZED)
@@ -94,6 +99,8 @@ kb_dir.eachFile  { file ->
         ++file_count
     }
 }
+
+writer.close()
 
 println "Added ${entity_count} entities from ${file_count} files to kb index."
 
