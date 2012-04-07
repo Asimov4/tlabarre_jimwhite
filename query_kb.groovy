@@ -1,5 +1,9 @@
 #!/usr/bin/env groovy
 
+// CLASSPATH=src:/NLP_TOOLS/info_retrieval/lucene/lucene-3.5.0/lucene-core-3.5.0.jar ./query_kb.groovy --entity_ref E0175811
+// CLASSPATH=src:/NLP_TOOLS/info_retrieval/lucene/lucene-3.5.0/lucene-core-3.5.0.jar ./query_kb.groovy --entity_id E0662857 entity_id:E0662857
+// CLASSPATH=src:/NLP_TOOLS/info_retrieval/lucene/lucene-3.5.0/lucene-core-3.5.0.jar ./query_kb.groovy --entity_class 'Infobox Philosopher' --entity_class Infobox_Philosopher
+
 import org.apache.lucene.store.FSDirectory
 import org.apache.lucene.index.IndexReader
 import org.apache.lucene.search.IndexSearcher
@@ -41,6 +45,7 @@ def do_query(Query query)
         println(doc.get("path"))
 //        println doc.get("line_number")
 //        println doc.get("line_count")
-        doc.fields.each { println it }
+//        doc.fields.each { println it }
+        doc.fields.each { println "${it.name()}:${it.stringValue()}" }
     }
 }
